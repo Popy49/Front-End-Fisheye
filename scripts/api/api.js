@@ -11,7 +11,6 @@ class Api {
         return fetch(this.url)
             .then(res => res.json())
             .then(function(value) {
-                console.log(value);
                 return value;
               })
             .catch(err => console.log('an error occurs', err))

@@ -7,6 +7,7 @@ class photographer {
         this._portrait = data.portrait
         this._id = data.id
         this._price = data.price
+        this.firstname = data.name.split(' ')[0]
     }
 
     get name() {
@@ -37,10 +38,4 @@ class photographer {
         return `${this._price}€/jour`
     }
 
-    get firstname() {
-        const str = this._name;
-        const name = str.split(' ');
-        this._firstname = name[0]
-        return this._firstname;
-    }
 }
