@@ -3,10 +3,6 @@
         const datas = await data.get();
         const userdata = datas.photographers;
         const photographers = userdata.map(user => photographerFactory(user))
-        console.log(photographers)
-        // const photographers = userdata.map(user => new photographer(user));
-        // console.log(photographers);
-
         return ({
             photographers
         })
@@ -14,7 +10,6 @@
 
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
-
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();

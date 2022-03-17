@@ -7,7 +7,6 @@ function photographerFactory(data) {
     
 
     function getUserCardDOM() {
-        console.log(firstname)
         const article = document.createElement( 'article' );
         article.innerHTML = `
                             <a href="photographer.html?id=${id}">
