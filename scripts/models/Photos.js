@@ -1,13 +1,12 @@
 class Photos {
-    constructor(data, id, name) {
+    constructor(data) {
         this._photographerId = data.photographerId
         this._title = data.title
         this._image = data.image
+        this._video = data.video
         this._likes = data.likes
         this._date = data.date
         this._price = data.price
-        this._id = id
-        this._name = name
     }
 
     get photographerId() {
@@ -16,6 +15,21 @@ class Photos {
 
     get title() {
         return this._title
+    }
+
+
+    getMedia(firstName) {
+        if(this._image){
+            return `<img
+                        alt="${this._title}, closeup view"
+                        src="../../assets/photographers/${firstName}/${this._image}"
+                        style="width:100px"
+                    /> `
+        } else if(this._video) {
+            return `<video controls style="width:100px">
+                        <source src="../../assets/photographers/${firstName}/${this._video}" type="video/mp4">
+                    </video>`
+        }
     }
 
     get image() {

@@ -18,6 +18,7 @@
         const photographersSection = document.querySelector(".photographer_section");
 
         photographers.forEach((photographer) => {
+            
             const photographerModel = new photographerCard(photographer);
             const userCardDOM = photographerModel.createUserCard();
             photographersSection.appendChild(userCardDOM);

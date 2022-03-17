@@ -19,7 +19,6 @@ class photographerBande {
                 <img style="width: 100px" alt="${this.user.name}"
                     src="${this.user.portrait}"
                 />
-                <img src="../../assets/photographers/${this.user.firstname}/Animals_Rainbow.jpg" class="logo" alt="Fisheye Home page"/>
             </div>
         `
         
