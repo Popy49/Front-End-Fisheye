@@ -1,0 +1,31 @@
+.photograph-header {
+  background-color: #fafafa;
+  padding: 20px;
+  width: 100%;
+  &__infos {
+    margin: auto;
+    text-align: left;
+  }
+  article {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-between;
+    h1 {
+      color: $secondary-color;
+      font-size: 40px;
+      font-weight: 200;
+      margin: 0;
+    }
+    p {
+      margin: 3px;
+    }
+    p:first-of-type {
+      color: $primary-color;
+      font-size: 25px;
+    }
+    p:nth-of-type(2) {
+      font-size: 17px;
+    }
+  }
+}

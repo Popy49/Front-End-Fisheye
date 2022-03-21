@@ -8,14 +8,14 @@ function photographerFactory(data, type) {
             const article = document.createElement( 'article' );
             article.innerHTML = `
                                 <a href="photographer.html?id=${id}">
-                                <img
+                                <img class="photographer__image"
                                     src="${picture}"
                                 />
                                 <h2>${name}</h2>
                                 </a>
-                                <p>${city}</p>
+                                <p>${city}, ${country}</p>
                                 <p>${tagline}</p>
-                                <p>${price}</p>
+                                <p>${price}€/jour</p>
                                 `
             return (article);
         }
@@ -23,18 +23,16 @@ function photographerFactory(data, type) {
         function getUserBandeDOM() {
             const article = document.createElement( 'article' );
             article.innerHTML = `
-                                <div class="photograph-header">
-                                    <div>
+                                    <div class="photograph-header__infos">
                                         <h1>${name}</h1>
-                                        <p>${city}</p>
+                                        <p>${city}, ${country}</p>
                                         <p>${tagline}</p>
                                     </div>
                                     
                                     <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-                                    <img style="width: 100px" alt="${name}"
+                                    <img class="photographer__image" alt="${name}"
                                         src="${picture}"
                                     />
-                                </div>
                                 `
             return (article);
         }
@@ -45,17 +43,24 @@ function photographerFactory(data, type) {
 
         function getMedia(firstName) {
             if(image){
-                return `<a class="lightbox__media" href="../../assets/photographers/${firstName}/${image}">
+                return `<div class="grid__image">
+                        <a class="lightbox__media" href="../../assets/photographers/${firstName}/${image}">
                         <img
+                            
                             alt="${title}, closeup view"
                             src="../../assets/photographers/${firstName}/${image}"
-                            style="width:100px"
+                            "
                         /> 
-                        </a>`
+                        </a>
+                        </div>`
             } else if(video) {
-                return `<video controls style="width:100px">
+                return `<div class="grid__image">
+                        <a class="lightbox__media" href="../../assets/photographers/${firstName}/${video}">
+                        <video controls ">
                             <source src="../../assets/photographers/${firstName}/${video}" type="video/mp4">
-                        </video>`
+                        </video>
+                        </a>
+                        </div>`
             }
         }
 

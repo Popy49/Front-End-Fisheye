@@ -1,0 +1,20 @@
+.photograph-grid {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-template-rows: auto;
+}
+
+.grid__element {
+  a > img,
+  a > video {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}
+
+// .grid__image {
+//   width: 200px;
+//   height: 200px;
+// }

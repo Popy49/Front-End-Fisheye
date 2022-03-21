@@ -118,12 +118,12 @@ async function getPrice(photographers) {
     return price
 };
 
-async function displayBande(likes, price) {
-    const photographersSection = document.querySelector(".photograph-header");
-    const bandeSection = document.createElement("div");
-    bandeSection.innerHTML = `${likes}  ${price}€/jour`
-    photographersSection.appendChild(bandeSection)
-}
+// async function displayBande(likes, price) {
+//     const photographersSection = document.querySelector(".photograph-header");
+//     const bandeSection = document.createElement("div");
+//     bandeSection.innerHTML = `${likes}  ${price}€/jour`
+//     photographersSection.appendChild(bandeSection)
+// }
 
 async function displayGrid(medias, x) {
     const photographersSection = document.querySelector(".photograph-grid");
@@ -208,6 +208,7 @@ async function init() {
     var y = await getLikes(medias);
     var z = await getPrice(photographers);
     displayBande(y, z)
+    var box = await lightbox.init()
     
 };
 
