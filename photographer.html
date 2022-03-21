@@ -17,8 +17,27 @@
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
+      <div class="sort">
+        <label for="sorting">Filter par :</label>
+        <select name="sorting" id="sorting" onchange="getSort(this)">
+          <option value="Popularité" >Popularité</option>
+          <option value="Date" >Date</option>
+          <option value="Titre">Titre</option>
+      </select>
+      </div>
+      <div class="photograph-grid"></div>
       <div class="lala"></div>
     </main>
+
+    <div class="lightbox">
+      <button class="lightbox__close">X</button>
+      <button class="lightbox__next">-></button>
+      <button class="lightbox__previous"><-</button>
+    </div>
+
+
+
+
     <div id="contact_modal">
 			<div class="modal">
 				<header>
@@ -35,11 +54,12 @@
 			</div>
 		</div>
     <script src="scripts/api/api.js"></script>
-    <script src="scripts/models/photographe.js"></script>
+    <!-- <script src="scripts/models/photographe.js"></script>
     <script src="scripts/models/Photos.js"></script>
     <script src="scripts/template/PhotosList.js"></script>
-    <script src="scripts/template/photographerBande.js"></script>
+    <script src="scripts/template/photographerBande.js"></script> -->
     <script src="scripts/factories/Photographer.js"></script>
+    <!-- <script src="scripts/pages/index.js"></script> -->
     <script src="scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>

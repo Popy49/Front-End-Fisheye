@@ -1,0 +1,33 @@
+{
+  "photographers": [
+    {
+      "name": "Mimi Keel",
+      "id": 243,
+      "city": "London",
+      "country": "UK",
+      "tagline": "Voir le beau dans le quotidien",
+      "price": 400,
+      "portrait": "MimiKeel.jpg"
+    },
+    {
+      "name": "Chris",
+      "age": "38",
+      "id": 244
+    },
+    {
+      "name": "Chris",
+      "age": "38",
+      "id": 245
+    },
+    {
+      "name": "Chris",
+      "age": 103,
+      "id": 246
+    },
+    {
+      "name": "Chris",
+      "age": 88,
+      "id": 247
+    }
+  ]
+}

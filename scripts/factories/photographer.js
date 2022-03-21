@@ -1,33 +1,89 @@
-function photographerFactory(data) {
-    console.log(data)
-    const { name, portrait, city, country, tagline, id, price} = data;
+function photographerFactory(data, type) {
+    if(type == "photographer") {
+        const { name, portrait, city, country, tagline, id, price} = data;
+        const picture = `../../assets/photographers/id/${portrait}`;
+        const firstname = name.split(' ')[0];
 
-    const picture = `../../assets/photographers/id/${portrait}`;
-    const firstname = name.split(' ')[0];
-    
+        function getUserCardDOM() {
+            const article = document.createElement( 'article' );
+            article.innerHTML = `
+                                <a href="photographer.html?id=${id}">
+                                <img
+                                    src="${picture}"
+                                />
+                                <h2>${name}</h2>
+                                </a>
+                                <p>${city}</p>
+                                <p>${tagline}</p>
+                                <p>${price}</p>
+                                `
+            return (article);
+        }
 
-    function getUserCardDOM() {
-        const article = document.createElement( 'article' );
-        article.innerHTML = `
-                            <a href="photographer.html?id=${id}">
-                            <img
-                                src="${picture}"
-                            />
-                            <h2>${name}</h2>
-                            </a>
-                            <p>${city}</p>
-                            <p>${tagline}</p>
-                            <p>${price}</p>
-                            `
-        // const img = document.createElement( 'img' );
-        // img.setAttribute("src", picture)
-        // const h2 = document.createElement( 'h2' );
-        // h2.textContent = name;
-        // article.appendChild(img);
-        // article.appendChild(h2);
-        return (article);
-    }
-    return { name, portrait, city, country, tagline, id, price, firstname, getUserCardDOM }
-}
+        function getUserBandeDOM() {
+            const article = document.createElement( 'article' );
+            article.innerHTML = `
+                                <div class="photograph-header">
+                                    <div>
+                                        <h1>${name}</h1>
+                                        <p>${city}</p>
+                                        <p>${tagline}</p>
+                                    </div>
+                                    
+                                    <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+                                    <img style="width: 100px" alt="${name}"
+                                        src="${picture}"
+                                    />
+                                </div>
+                                `
+            return (article);
+        }
+        return { name, portrait, city, country, tagline, id, price, firstname, getUserCardDOM, getUserBandeDOM }
+
+    } else if(type == "media") {
+        const { photographerId, title, image, video, likes, date, price} = data;
+
+        function getMedia(firstName) {
+            if(image){
+                return `<a class="lightbox__media" href="../../assets/photographers/${firstName}/${image}">
+                        <img
+                            alt="${title}, closeup view"
+                            src="../../assets/photographers/${firstName}/${image}"
+                            style="width:100px"
+                        /> 
+                        </a>`
+            } else if(video) {
+                return `<video controls style="width:100px">
+                            <source src="../../assets/photographers/${firstName}/${video}" type="video/mp4">
+                        </video>`
+            }
+        }
+
+
+
+        function getPhotosListDOM(firstName) {
+            const article = document.createElement( 'article' );
+            article.innerHTML = `
+                                <div class="grid__element">
+                                `+
+                                getMedia(firstName)
+                                +`
+                                
+                                    <div>
+                                        <h1>${title}</h1>
+                                        <h1>${date}</h1>
+                                        <p>${likes} <button onclick="addLike(${likes})">♥</button></p>
+                                    </div>
+                                </div>
+                                `
+            return (article);
+        }
+
+        
+
+        return { photographerId, title, image, video, likes, date, price, getPhotosListDOM}
+
+        
+}}
 
 
