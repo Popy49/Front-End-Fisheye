@@ -15,17 +15,12 @@ class lightbox {
         document.body.appendChild(element)
     }
 
-    closed(e){
-        e.preventDefault
-        console.log(this.element)
-        this.element.remove()
-    }
 
     buildDOM(url) {
         const dom = document.querySelector('.lightbox')
         console.log(dom)
         dom.innerHTML = `
-                        <button class="lightbox__close">X</button>
+                        <button onclick="closeLightbox()" class="lightbox__close">X</button>
                         <button onclick="" class="lightbox__next">-></button>
                         <button onclick="" class="lightbox__previous"><-</button>
                         <img src=${url}>
