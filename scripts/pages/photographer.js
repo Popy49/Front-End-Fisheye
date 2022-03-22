@@ -207,7 +207,7 @@ async function init() {
     displayGrid(mediaById, x);
     var y = await getLikes(medias);
     var z = await getPrice(photographers);
-    displayBande(y, z)
+    // displayBande(y, z)
     var box = await lightbox.init()
     
 };
