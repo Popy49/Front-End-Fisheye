@@ -29,7 +29,7 @@ function photographerFactory(data, type) {
                                         <p>${tagline}</p>
                                     </div>
                                     
-                                    <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+                                    <button class="primary_button contact">Contactez-moi</button>
                                     <img class="photographer__image" alt="${name}"
                                         src="${picture}"
                                     />
@@ -56,8 +56,9 @@ function photographerFactory(data, type) {
             } else if(video) {
                 return `<div class="grid__image">
                         <a class="lightbox__media" href="../../assets/photographers/${firstName}/${video}">
-                        <video controls ">
-                            <source src="../../assets/photographers/${firstName}/${video}" type="video/mp4">
+                        <video controls="controls" preload="metadata">
+                            <meta itemprop="name" content="${title}, closeup view">
+                            <source src="../../assets/photographers/${firstName}/${video}#t=5" type="video/mp4">
                         </video>
                         </a>
                         </div>`
@@ -69,15 +70,17 @@ function photographerFactory(data, type) {
         function getPhotosListDOM(firstName) {
             const article = document.createElement( 'article' );
             article.innerHTML = `
-                                <div class="grid__element">
+                                <div class="grid">
                                 `+
                                 getMedia(firstName)
                                 +`
                                 
-                                    <div>
-                                        <h1>${title}</h1>
-                                        <h1>${date}</h1>
-                                        <p>${likes} <button onclick="addLike(${likes})">♥</button></p>
+                                    <div class="grid__infos">
+                                        <p>${title}</p>
+                                        <div class="grid__infos--flexend">
+                                        <p>${likes}</p>
+                                        <button class="likeBtn" onclick="addLike(${likes})">♥</button>
+                                        </div>
                                     </div>
                                 </div>
                                 `

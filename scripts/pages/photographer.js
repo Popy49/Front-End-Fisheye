@@ -89,7 +89,22 @@ async function getSort(filter) {
     }
     console.log(mediasById) 
     displayGrid(mediasById, x);
+    var box = await lightbox.init()
 }
+
+async function getName(photographers) {
+    let params = new URLSearchParams(document.location.search)
+    const idPhotographer = parseInt(params.get('id'))
+    name = "";
+    photographers.forEach((photographer) => {
+        if(idPhotographer === photographer.id){
+            name = photographer.name
+    } 
+    });  
+    return name
+}
+
+
 
 async function getLikes(medias) {
     let params = new URLSearchParams(document.location.search)
@@ -118,12 +133,12 @@ async function getPrice(photographers) {
     return price
 };
 
-// async function displayBande(likes, price) {
-//     const photographersSection = document.querySelector(".photograph-header");
-//     const bandeSection = document.createElement("div");
-//     bandeSection.innerHTML = `${likes}  ${price}€/jour`
-//     photographersSection.appendChild(bandeSection)
-// }
+async function displayBande(likes, price) {
+    const photographersSection = document.querySelector(".total");
+    const bandeSection = document.createElement("div");
+    bandeSection.innerHTML = `${likes}♥  ${price}€/jour`
+    photographersSection.appendChild(bandeSection)
+}
 
 async function displayGrid(medias, x) {
     const photographersSection = document.querySelector(".photograph-grid");
@@ -207,9 +222,10 @@ async function init() {
     displayGrid(mediaById, x);
     var y = await getLikes(medias);
     var z = await getPrice(photographers);
-    // displayBande(y, z)
+    var name = await getName(photographers);
+    displayBande(y, z)
     var box = await lightbox.init()
-    
+    var modal = await Modal.init(name)
 };
 
 init();

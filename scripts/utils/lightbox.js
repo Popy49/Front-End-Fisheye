@@ -1,7 +1,6 @@
 class lightbox {
 
     static async init() {
-        
         const links = Array.from(document.querySelectorAll('.lightbox__media'));
         const gallery = links.map(link => link.getAttribute("href"));
         links.forEach(link => link.addEventListener("click", e => 
@@ -46,7 +45,6 @@ class lightbox {
     }
 
     onKeyUp(e) {
-        console.log("lala")
        if(e.key === 'Escape') {
            this.closeLightbox(e)
        } else if (e.key === 'ArrowLeft') {
@@ -56,15 +54,65 @@ class lightbox {
        }
     }
 
+    getMedia(url){
+        const links = Array.from(document.querySelectorAll('.lightbox__media'));
+        links.forEach((link) => {
+            if(link.getElementsByTagName('img').length){}
+        
+            if(link.getAttribute("href") === url){
+                title = link.children[0].alt.split(',')[0];
+                
+            }
+        })
+    }
+
+
 
     buildDOM(url) {
+        const links = Array.from(document.querySelectorAll('.lightbox__media'));
+        var title = ""
+        var type = ""
+        links.forEach((link) => {
+            if(link.getAttribute("href") === url){
+                if(link.getElementsByTagName('img').length){
+                    console.log("img")
+                    title = link.children[0].alt.split(',')[0];
+                    type = `<figure>
+                                <img src=${url}
+                                alt="${title}">
+                                <figcaption>${title}</figcaption>
+                            </figure>`
+                } else if (link.getElementsByTagName('video').length){
+                    title = link.children[0].children[0].getAttribute("content").split(',')[0]
+                    type = `<figure>
+                                <video controls preload="metadata" >
+                                <source src=${url} type="video/mp4">
+                                </video>
+                                <figcaption>${title}</figcaption>
+                            </figure>`
+                }
+            }
+
+        
+            // if(link.getAttribute("href") === url){
+            //     console.log(link.children[0])
+            //     console.log(link.children[0].data)
+            //     title = link.children[0].alt.split(',')[0];
+                
+            // }
+        })
         const dom = document.querySelector('.lightbox')
-        console.log(dom)
-        dom.innerHTML = `
-                        <button class="lightbox__close">X</button>
-                        <button class="lightbox__next">-></button>
-                        <button onclick="" class="lightbox__previous"><-</button>
-                        <img src=${url}>
+        console.log(type)
+        dom.innerHTML = `<div class=lightbox__background>
+                            <div class="lightbox__diapo">
+                            <button class="lightbox__btn lightbox__previous"><i class="fas fa-chevron-left"></i></button>
+                            ${type}
+                            <div class="flexCol">
+                                <button class="lightbox__btn lightbox__close"><i class="fas fa-times"></i></button>
+                                <button class="lightbox__btn lightbox__next"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            </div>
+                        </div>
                         `
         dom.querySelector(".lightbox__close").addEventListener('click', this.closeLightbox.bind(this));
         dom.querySelector(".lightbox__next").addEventListener('click', this.nextLightbox.bind(this));
@@ -72,13 +120,6 @@ class lightbox {
         return dom
     }
 
-}
-
-
-function closeLightbox() {
-    const dom = document.querySelector('.lightbox')
-    dom.style.display = "none";
-    
 }
 
 

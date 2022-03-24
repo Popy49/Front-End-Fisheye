@@ -1,0 +1,35 @@
+.lightbox {
+  background-color: rgba(255, 255, 255, 0.932);
+  position: sticky;
+  top: 0;
+  img,
+  video {
+    max-width: 100vw;
+    max-height: 80vh;
+  }
+  &__background {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  &__diapo {
+    text-align: center;
+    margin: auto;
+    display: flex;
+  }
+  &__btn {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: $primary-color;
+    margin: auto;
+  }
+  &__close {
+    margin: 0;
+  }
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
