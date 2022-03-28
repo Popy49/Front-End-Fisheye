@@ -1,6 +1,7 @@
 class lightbox {
 
     static async init() {
+        // Initialisation
         const links = Array.from(document.querySelectorAll('.lightbox__media'));
         const gallery = links.map(link => link.getAttribute("href"));
         links.forEach(link => link.addEventListener("click", e => 
@@ -12,6 +13,12 @@ class lightbox {
     }
 
     constructor (url, gallery) {
+        // Construit l'objet lightbox
+        /**
+            * @param {string} url
+            * @param {object} gallery
+            * 
+        */
         let element = this.buildDOM(url)
         this.gallery = gallery
         this.url = url
@@ -22,6 +29,11 @@ class lightbox {
     }
 
     nextLightbox(e){
+        // Affiche la lightbox suivante
+        /**
+            * @param {object} mouseevent
+            * 
+        */
         e.preventDefault;
         let index = this.gallery.indexOf(this.url) + 1
         this.url = index === this.gallery.length ? this.gallery[0] : this.gallery[index]
@@ -30,6 +42,11 @@ class lightbox {
     }
 
     previousLightbox(e){
+        // Affiche la lightbox precedente
+        /**
+            * @param {object} mouseevent
+            * 
+        */
         e.preventDefault;
         let index = this.gallery.indexOf(this.url) - 1
         this.url = index === -1 ? this.gallery[this.gallery.length-1] : this.gallery[index]
@@ -38,6 +55,11 @@ class lightbox {
     }
 
     closeLightbox(e){
+        // Ferme la lightbox
+        /**
+            * @param {object} mouseevent
+            * 
+        */
         e.preventDefault;
         const dom = document.querySelector('.lightbox')
         dom.style.display = "none";
@@ -45,6 +67,11 @@ class lightbox {
     }
 
     onKeyUp(e) {
+        // Affichage ou fermeture de la lightbox au clavier
+        /**
+            * @param {object} tabevent
+            * 
+        */
        if(e.key === 'Escape') {
            this.closeLightbox(e)
        } else if (e.key === 'ArrowLeft') {
@@ -54,21 +81,14 @@ class lightbox {
        }
     }
 
-    getMedia(url){
-        const links = Array.from(document.querySelectorAll('.lightbox__media'));
-        links.forEach((link) => {
-            if(link.getElementsByTagName('img').length){}
-        
-            if(link.getAttribute("href") === url){
-                title = link.children[0].alt.split(',')[0];
-                
-            }
-        })
-    }
-
-
 
     buildDOM(url) {
+        // Construit le DOM 
+        /**
+            * @param {string} url
+            * @return {object} dom
+            * 
+        */
         const links = Array.from(document.querySelectorAll('.lightbox__media'));
         var title = ""
         var type = ""
@@ -92,14 +112,6 @@ class lightbox {
                             </figure>`
                 }
             }
-
-        
-            // if(link.getAttribute("href") === url){
-            //     console.log(link.children[0])
-            //     console.log(link.children[0].data)
-            //     title = link.children[0].alt.split(',')[0];
-                
-            // }
         })
         const dom = document.querySelector('.lightbox')
         console.log(type)

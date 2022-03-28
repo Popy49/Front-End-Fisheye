@@ -1,7 +1,7 @@
 class Modal {
 
     static async init(firstName) {
-        
+        // Initialisation
         const button = document.querySelector('.contact');
         button.addEventListener("click", e => 
         {
@@ -12,29 +12,64 @@ class Modal {
     }
 
     constructor (firstName) {
-        console.log(firstName)
+        // Construit l'objet modal
+        /**
+            * @param {string} firstName
+            * 
+        */
         this.firstName = firstName
         let element = this.buildDOM()
+        this.onKeyUp = this.onKeyUp.bind(this)
+        document.addEventListener('keyup', this.onKeyUp)
         const dom = document.querySelector('#contact_modal')
-        
-        console.log(this.firstName)
         this.display = dom.style.display = "block"
-        // const dom = document.querySelector('#contact_modal')
-        // const close = document.querySelector(".modal__close")
-        // this.display = dom.style.display = "block"
-        // this.close = this.closeModal()
-        
+    }
+
+    submit(e){
+        // Construit l'objet modal
+        /**
+            * @param {object} mouseevent
+            * 
+        */
+        e.preventDefault()
+        const firstname = document.getElementById("First-name").value;
+        const lastName = document.getElementById("Last-name").value;
+        const email = document.getElementById("Email").value;
+        const message = document.getElementById("Message").value;
+        console.log(firstname, lastName, email, message)
+        this.closeModal(this)
     }
 
     closeModal(e){
+        // Ferme la modale
+        /**
+            * @param {object} mouseevent
+            * 
+        */
         e.preventDefault;
         const dom = document.querySelector('#contact_modal')
         dom.style.display = "none";
+        document.removeEventListener('keyup', this.onKeyUp)
+    }
+
+    onKeyUp(e) {
+        // Fermeture de la modale au clavier
+        /**
+            * @param {object} tabevent
+            * 
+        */
+       if(e.key === 'Escape') {
+           this.closeModal(e)
+       }
     }
 
     buildDOM() {
+        // Construit le DOM 
+        /**
+            * @return {object} dom
+            * 
+        */
         const dom = document.querySelector('#contact_modal');
-        console.log(dom)
         dom.innerHTML = `
                         <div class="modal">
                         <header>
@@ -43,46 +78,25 @@ class Modal {
                         </header>
                         <form>
                         <div>
-                            <label id="First-name" for="First-name">Prénom</label>
+                            <label for="First-name">Prénom</label>
                             <input type="text" id="First-name" name="First-name" required aria-labelledby="First-name" minlength="2" maxlength="30">
 
-                            <label id="Last-name" for="Last-name">Nom</label>
+                            <label for="Last-name">Nom</label>
                             <input type="text" id="Last-name" name="Last-name" required aria-labelledby="Last-name" minlength="2" maxlength="30">
 
-                            <label id="Email" for="Email">Email</label>
+                            <label for="Email">Email</label>
                             <input type="text" id="Email" name="Email" required aria-labelledby="Email">
 
-                            <label id="Message" for="Message">Message</label>
+                            <label for="Message">Message</label>
                             <textarea id="Message" name="Message" placeholder="Laissez votre message ici" aria-labelledby="Message"></textarea>
                         </div>
-                        <button class="primary_button">Envoyer</button>
+                        <button class="primary_button submit">Envoyer</button>
                         </form>
                         </div>
                         `
         dom.querySelector(".modal__close").addEventListener('click', this.closeModal.bind(this));
+        dom.querySelector(".submit").addEventListener('click', this.submit.bind(this));
         return dom
     }
-
-    // closeModal(e){
-    //     const dom = document.querySelector('#contact_modal')
-    //     dom.querySelector(".modal__close").addEventListener('click', dom.style.display = "none");
-    //     // e.preventDefault;
-    //     // const dom = document.querySelector('.modal__close')
-    //     // // dom.querySelector(".lightbox__close").addEventListener('click', this.closeLightbox.bind(this));
-    //     // dom.style.display = "none";
-    // }
-
-
-
 }
-
-// function displayModal() {
-//     const modal = document.getElementById("contact_modal");
-// 	modal.style.display = "block";
-// }
-
-// function closeModal() {
-//     const modal = document.getElementById("contact_modal");
-//     modal.style.display = "none";
-// }
 

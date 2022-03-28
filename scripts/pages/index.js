@@ -1,4 +1,9 @@
-    async function getPhotographers() {
+   
+   async function getPhotographers() {
+        // Récupère les datas des photographes
+        /**
+        * @return {object} photographers
+        */
         const data = new UserApi('../../data/photographers.json');
         const datas = await data.get();
         const userdata = datas.photographers;
@@ -9,6 +14,10 @@
     }
 
     async function displayData(photographers) {
+        // Affichage des photographes dans le DOM
+        /**
+        * @param {object} photographers
+        */
         const photographersSection = document.querySelector(".photographer_section");
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer, "photographer");
@@ -19,7 +28,7 @@
     };
 
     async function init() {
-        // Récupère les datas des photographes
+        // Initialisation
         const { photographers } = await getPhotographers();
         displayData(photographers);
     };

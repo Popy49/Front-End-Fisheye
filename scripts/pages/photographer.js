@@ -1,4 +1,8 @@
 async function getPhotographers() {
+    // Récupère les datas des photographes
+        /**
+        * @return {object} photographers
+    */
     const data = new UserApi('../../data/photographers.json');
     const datas = await data.get();
     const userdata = datas.photographers;
@@ -9,6 +13,10 @@ async function getPhotographers() {
 }
 
 async function displayDataBande(photographers) {
+    // Affichage du header photogtaphe dans le DOM
+        /**
+        * @param {object} photographers
+    */
     const photographersSection = document.querySelector(".photograph-header");
     let params = new URLSearchParams(document.location.search)
     const idPhotographer = parseInt(params.get('id'))
@@ -22,18 +30,27 @@ async function displayDataBande(photographers) {
 };
 
 async function getFirstname(photographers) {
+    // Récupère le prénom de photographe
+        /**
+        * @param {object} photographers
+        * @return {string} firstName
+    **/
     let params = new URLSearchParams(document.location.search)
     const idPhotographer = parseInt(params.get('id'))
     photographers.forEach((photographer) => {
         if(idPhotographer === photographer.id){
-            return x = photographer.firstname
+            return firstName = photographer.firstname
     }
     });  
-    return x
+    return firstName
 };
 
 
 async function getMedias() {
+    // Récupère les datas médias 
+        /**
+        * @return {object} medias
+    */
     const data = new UserApi('../../data/photographers.json');
     const datas = await data.get();
     const userdata = datas.media;
@@ -44,6 +61,11 @@ async function getMedias() {
 }
 
 async function getMediasById(medias) {
+    // Récupère les datas médias d'un seul photographe
+        /**
+        * @param {object} medias
+        * @return {object} mediasById
+    */
     let params = new URLSearchParams(document.location.search)
     const idPhotographer = parseInt(params.get('id'))
     let mediasById = []
@@ -57,22 +79,29 @@ async function getMediasById(medias) {
 }
 
 
-async function getPhotosByTitle() {
-    const data = new UserApi('../../data/photographers.json');
-    const datas = await data.get();
-    const userdata = datas.media;
-    const medias = userdata.map(media => photographerFactory(media, "media"))
-    return ({
-        medias
-    })
-}
+// async function getPhotosByTitle() {
+//     // Récupère les datas médias d'un seul photographe
+//         /**
+//         * @return {object} medias
+//     */
+//     const data = new UserApi('../../data/photographers.json');
+//     const datas = await data.get();
+//     const userdata = datas.media;
+//     const medias = userdata.map(media => photographerFactory(media, "media"))
+//     return ({
+//         medias
+//     })
+// }
 
 async function getSort(filter) {
+    // Tri les résultats de sortie des medias (titre, date ou popularité)
+        /**
+        * @param {string} filter
+    */
     const { photographers } = await getPhotographers();
-    var x = await getFirstname(photographers);
+    var firstName = await getFirstname(photographers);
     const { medias } = await getMedias();
     var mediasById = await getMediasById(medias);
-    
     var t=[];
     if(filter.value==="Popularité"){
         var sortByLikes = mediasById.sort(function (a, b) {
@@ -86,13 +115,17 @@ async function getSort(filter) {
             return a.date - b.date;
           });
         t = sortByDate.reverse()
-    }
-    console.log(mediasById) 
-    displayGrid(mediasById, x);
+    } 
+    displayGrid(mediasById, firstName);
     var box = await lightbox.init()
 }
 
 async function getName(photographers) {
+    // Récupère le nom du photographe
+        /**
+        * @param {object} photographers
+        * @returns {string} name
+    */
     let params = new URLSearchParams(document.location.search)
     const idPhotographer = parseInt(params.get('id'))
     name = "";
@@ -107,6 +140,11 @@ async function getName(photographers) {
 
 
 async function getLikes(medias) {
+    // Récupère le nombre de like total
+        /**
+        * @param {object} medias
+        * @returns {number} likes
+    */
     let params = new URLSearchParams(document.location.search)
     const idPhotographer = parseInt(params.get('id'))
     let likes = 0;
@@ -122,6 +160,11 @@ async function getLikes(medias) {
 
 
 async function getPrice(photographers) {
+    // Récupère le tarif du photographe
+        /**
+        * @param {object} photographers
+        * @returns {number} price
+    */
     let params = new URLSearchParams(document.location.search)
     const idPhotographer = parseInt(params.get('id'))
     price = 0;
@@ -134,13 +177,32 @@ async function getPrice(photographers) {
 };
 
 async function displayBande(likes, price) {
+    // Affichage de la bande sticky
+        /**
+        * @param {number} likes, price
+        * 
+    */
     const photographersSection = document.querySelector(".total");
     const bandeSection = document.createElement("div");
-    bandeSection.innerHTML = `${likes}♥  ${price}€/jour`
+    const likesSection = document.createElement("span");
+    const priceSection = document.createElement("span");
+    bandeSection.classList.add("total--likes")
+    priceSection.classList.add("total--price")
+    likesSection.innerHTML = `${likes}♥`
+    priceSection.innerHTML = ` ${price}€/jour`
+    bandeSection.appendChild(likesSection)
+    bandeSection.appendChild(priceSection)
     photographersSection.appendChild(bandeSection)
+    
 }
 
-async function displayGrid(medias, x) {
+async function displayGrid(medias, firstName) {
+    // Affichage de la grille des medias
+    /**
+        * @param {object} medias
+        * @param {string} firstName
+        * 
+    */
     const photographersSection = document.querySelector(".photograph-grid");
     photographersSection.innerHTML = ""
     let params = new URLSearchParams(document.location.search)
@@ -149,81 +211,41 @@ async function displayGrid(medias, x) {
     medias.forEach((media) => {
         if(idPhotographer === media.photographerId){
             const photographerModel = photographerFactory(media, "media");
-            const userCardDOM = photographerModel.getPhotosListDOM(x);
+            const userCardDOM = photographerModel.getPhotosListDOM(firstName );
             photographersSection.appendChild(userCardDOM);
     }
     });  
 };
 
-async function addLike(like){
-    // like++;
-    // const jsonBody = { "name": "Chris", "age": like }
-    // fetch(" http://localhost:3000/photographers", {
-	// method: "PUT",
-	// headers: { 
-    //     'Accept': 'application/json', 
-    //     'Content-Type': 'application/json' 
-    //     },
-    //         age: like
-    //     });
-
-    // fetch('../../data/test.json')
-    // .then(rep => 
-    //     {
-    //         if (rep.ok === true) return rep.json();
-    //         else return Promise.reject(`Erreur HTTP fetch 1 => ${rep.status}`)
-    //     }
-    // )
-    // .then(data => 
-    //     {
-    //         console.log(data);
-    //         console.log(data.photographers);
-    //         const doto = data.photographers;
-    //         // Je fais une copie de l'objet avant de le modifier
-    //         const newData = {...doto};
-    //         console.log(newData[3].age);
-    //         newData[3].age += 1;
-            
-    //         // Je prépare le deuxième argument du fetch
-    //         console.log(newData);
-    //         const myInit = {
-    //             method: 'PUT',
-    //             body: JSON.stringify(newData),
-    //             headers: { 'Content-type': 'application/json; charset=UTF-8' }
-    //         }
-    //         return fetch('http://localhost:3000/photographers', myInit)
-    //     }
-    // )
-    // .then(rep => 
-    //     {
-    //         if (rep.ok === true) return rep.json();
-    //         else return Promise.reject(`Erreur HTTP fetch 2 => ${rep.status}`)
-    //     }
-    // )
-    // .then(data => console.log(data))
-    // .catch(err => console.log(err))
+async function addLike(e){
+    // Ajoute un like au clique
+    /**
+        * @param {object} event
+        * 
+    */
+    let like = parseInt(e.parentElement.firstElementChild.textContent) 
+    let likes = parseInt(document.querySelector('.total--likes').firstChild.textContent)
+    like++
+    likes++
+    e.parentElement.firstElementChild.innerHTML = like;
+    document.querySelector('.total--likes').firstChild.innerHTML = `${likes} ♥`
 }
 
 
 
 
 async function init() {
-    // Récupère les datas des photographes
-    // const { photographers } = await getPhotographers();
-    // displayData(photographers);
-    
+    // Initialisation
     const { photographers } = await getPhotographers();
     displayDataBande(photographers);
-    var x = await getFirstname(photographers);
+    var firstName = await getFirstname(photographers);
     const { medias } = await getMedias();
-    // medias.sort((a, b) => a.title.localeCompare(b.title));
-    // getSort(medias);
     var mediaById = await getMediasById(medias);
-    displayGrid(mediaById, x);
-    var y = await getLikes(medias);
-    var z = await getPrice(photographers);
+    displayGrid(mediaById, firstName);
+    var likes = await getLikes(medias);
+    var price = await getPrice(photographers);
     var name = await getName(photographers);
-    displayBande(y, z)
+    displayBande(likes, price)
     var box = await lightbox.init()
     var modal = await Modal.init(name)
 };

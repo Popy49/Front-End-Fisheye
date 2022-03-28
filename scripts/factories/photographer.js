@@ -1,9 +1,16 @@
+/** 
+     * Function FACTORY to extract datas, photographers or medias
+     * @param {object} data, @param {string} type 
+     * @returns {object} 
+*/
 function photographerFactory(data, type) {
+    // Récupère les datas des photographes
     if(type == "photographer") {
         const { name, portrait, city, country, tagline, id, price} = data;
         const picture = `../../assets/photographers/id/${portrait}`;
         const firstname = name.split(' ')[0];
 
+        // Créer le visuel d'un photographe sur la page index
         function getUserCardDOM() {
             const article = document.createElement( 'article' );
             article.innerHTML = `
@@ -20,6 +27,7 @@ function photographerFactory(data, type) {
             return (article);
         }
 
+        // Créer le visuel d'un photographe sur sa page
         function getUserBandeDOM() {
             const article = document.createElement( 'article' );
             article.innerHTML = `
@@ -39,8 +47,10 @@ function photographerFactory(data, type) {
         return { name, portrait, city, country, tagline, id, price, firstname, getUserCardDOM, getUserBandeDOM }
 
     } else if(type == "media") {
+        // Récupère les datas média d'un photogrpahe'
         const { photographerId, title, image, video, likes, date, price} = data;
 
+        // Récupère les medias d'un photographe, image ou vidéo
         function getMedia(firstName) {
             if(image){
                 return `<div class="grid__image">
@@ -66,7 +76,7 @@ function photographerFactory(data, type) {
         }
 
 
-
+        // Affiche les medias sous forme de grille
         function getPhotosListDOM(firstName) {
             const article = document.createElement( 'article' );
             article.innerHTML = `
@@ -79,7 +89,7 @@ function photographerFactory(data, type) {
                                         <p>${title}</p>
                                         <div class="grid__infos--flexend">
                                         <p>${likes}</p>
-                                        <button class="likeBtn" onclick="addLike(${likes})">♥</button>
+                                        <button class="likeBtn" onclick="addLike(this)">♥</button>
                                         </div>
                                     </div>
                                 </div>

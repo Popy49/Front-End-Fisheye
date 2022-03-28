@@ -15,38 +15,11 @@
       </a>
     </header>
     <main id="main">
-      <div class="lightbox">
-      </div>
+      <div class="lightbox"></div>
 
-      <div id="contact_modal">
-<!--         
-        <div class="modal">
-          <header>
-            <h2>Contactez-moi</h2>
-            <img class="modal__close" src="assets/icons/close.svg" />
-          </header>
-          <form>
-            <div>
-              <label id="First-name" for="First-name">Prénom</label>
-              <input type="text" id="First-name" name="First-name" required aria-labelledby="First-name" minlength="2" maxlength="30">
+      <div id="contact_modal"></div>
 
-              <label id="Last-name" for="Last-name">Nom</label>
-              <input type="text" id="Last-name" name="Last-name" required aria-labelledby="Last-name" minlength="2" maxlength="30">
-
-              <label id="Email" for="Email">Email</label>
-              <input type="text" id="Email" name="Email" required aria-labelledby="Email">
-
-              <label id="Message" for="Message">Message</label>
-              <textarea id="Message" name="Message" placeholder="Laissez votre message ici"></textarea>
-            </div>
-            <button class="primary_button">Envoyer</button>
-          </form> -->
-        </div>
-
-      </div>
-
-      <div class="photograph-header">
-      </div>
+      <div class="photograph-header"></div>
 
       <div class="sort">
         <label for="sorting">Filter par :</label>
@@ -54,28 +27,22 @@
           <option value="Popularité" >Popularité</option>
           <option value="Date" >Date</option>
           <option value="Titre">Titre</option>
-      </select>
+        </select>
       </div>
       <div class="photograph-grid"></div>
       <div class="total"></div>
       <div class="lala"></div>
     </main>
 
-
-
-
-
-
-
+    <!-- API -->
     <script src="scripts/api/api.js"></script>
-    <!-- <script src="scripts/models/photographe.js"></script>
-    <script src="scripts/models/Photos.js"></script>
-    <script src="scripts/template/PhotosList.js"></script>
-    <script src="scripts/template/photographerBande.js"></script> -->
+    <!-- Photographer FACTORY -->
     <script src="scripts/factories/Photographer.js"></script>
-    <!-- <script src="scripts/pages/index.js"></script> -->
+    <!-- Utils - Lightbox-->
     <script src="/scripts/utils/lightbox.js"></script>
+    <!-- Utils - Modale-->
     <script src="/scripts/utils/contactForm.js"></script>
+    <!-- PAGES -->
     <script src="scripts/pages/photographer.js"></script>
     
     
