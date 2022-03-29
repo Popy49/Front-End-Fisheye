@@ -14,24 +14,37 @@
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
       </a>
     </header>
+
+    <section class="lightbox">
+      <h2 hidden>Modale images</h2>
+    </section>
+    <section id="contact_modal">
+      <h2 hidden>Modale contact</h2>
+    </section>
+
     <main id="main">
-      <div class="lightbox"></div>
+      
+      <section class="photograph-header" role="banner">
+        <h2 hidden>Photographer informations</h2>
+      </section>
 
-      <div id="contact_modal"></div>
-
-      <div class="photograph-header"></div>
-
-      <div class="sort">
+      <section class="sort">
+        <h2 hidden>sort images by</h2>
         <label for="sorting">Filter par :</label>
-        <select class="primary_button" name="sorting" id="sorting" onchange="getSort(this)">
-          <option value="Popularité" >Popularité</option>
-          <option value="Date" >Date</option>
-          <option value="Titre">Titre</option>
+        <select class="primary_button" name="sorting" id="sorting" onchange="getSort(this)" aria-labelledby="sorting">
+          <option id="Popularité" value="Popularité" aria-labelledby="Popularité">Popularité</option>
+          <option id="Date" value="Date" aria-labelledby="Date">Date</option>
+          <option id="Titre" value="Titre" aria-labelledby="Titre">Titre</option>
         </select>
-      </div>
-      <div class="photograph-grid"></div>
-      <div class="total"></div>
-      <div class="lala"></div>
+      </section>
+
+      <section class="photograph-grid">
+        <h2 hidden>Thumbnails</h2>
+      </section>
+      <section class="total">
+        <h2 hidden>Total likes and price</h2>
+      </section>
+
     </main>
 
     <!-- API -->

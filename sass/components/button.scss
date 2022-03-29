@@ -4,8 +4,13 @@
   color: white;
   padding: 11px;
   height: 70px;
-  background-color: #901c1c;
+  background-color: $primary-color;
   border-radius: 5px;
   cursor: pointer;
   margin: auto;
+  &:hover,
+  &:focus {
+    background-color: $secondary-color;
+    color: black;
+  }
 }

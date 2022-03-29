@@ -1,7 +1,6 @@
 #contact_modal {
   display: none;
   position: absolute;
-  height: 2000px;
   left: 50%;
   transform: translate(-50%);
 }
@@ -9,7 +8,7 @@
 .modal {
   box-shadow: $light-shadow;
   position: sticky;
-  top: 0;
+  top: 300px;
   border-radius: 5px;
   background-color: $tertiary-color;
   width: 80%;

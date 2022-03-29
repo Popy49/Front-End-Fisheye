@@ -79,19 +79,6 @@ async function getMediasById(medias) {
 }
 
 
-// async function getPhotosByTitle() {
-//     // Récupère les datas médias d'un seul photographe
-//         /**
-//         * @return {object} medias
-//     */
-//     const data = new UserApi('../../data/photographers.json');
-//     const datas = await data.get();
-//     const userdata = datas.media;
-//     const medias = userdata.map(media => photographerFactory(media, "media"))
-//     return ({
-//         medias
-//     })
-// }
 
 async function getSort(filter) {
     // Tri les résultats de sortie des medias (titre, date ou popularité)
@@ -188,7 +175,7 @@ async function displayBande(likes, price) {
     const priceSection = document.createElement("span");
     bandeSection.classList.add("total--likes")
     priceSection.classList.add("total--price")
-    likesSection.innerHTML = `${likes}♥`
+    likesSection.innerHTML = `${likes} ♥`
     priceSection.innerHTML = ` ${price}€/jour`
     bandeSection.appendChild(likesSection)
     bandeSection.appendChild(priceSection)

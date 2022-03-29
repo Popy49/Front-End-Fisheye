@@ -24,8 +24,14 @@ class lightbox {
         this.url = url
         this.onKeyUp = this.onKeyUp.bind(this)
         document.addEventListener('keyup', this.onKeyUp)
+        
+        const main = document.querySelector('main')
+        main.setAttribute('aria-hidden', true)
+        main.setAttribute('hidden', true)
+
         const dom = document.querySelector('.lightbox')
         dom.style.display = "block"
+        dom.setAttribute('aria-hidden', false)
     }
 
     nextLightbox(e){
@@ -61,8 +67,15 @@ class lightbox {
             * 
         */
         e.preventDefault;
+        const main = document.querySelector('main')
+        main.setAttribute('aria-hidden', false)
+        main.removeAttribute('hidden')
+
         const dom = document.querySelector('.lightbox')
         dom.style.display = "none";
+        dom.setAttribute('aria-hidden', true)
+
+        
         document.removeEventListener('keyup', this.onKeyUp)
     }
 
@@ -90,6 +103,8 @@ class lightbox {
             * 
         */
         const links = Array.from(document.querySelectorAll('.lightbox__media'));
+        
+
         var title = ""
         var type = ""
         links.forEach((link) => {
@@ -116,12 +131,12 @@ class lightbox {
         const dom = document.querySelector('.lightbox')
         console.log(type)
         dom.innerHTML = `<div class=lightbox__background>
-                            <div class="lightbox__diapo">
-                            <button class="lightbox__btn lightbox__previous"><i class="fas fa-chevron-left"></i></button>
+                            <div class="lightbox__diapo" aria-label="image, closeup view" role="dialog" aria-describedby="modal with image closeup view">
+                            <button aria-label="Previous image" class="lightbox__btn lightbox__previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
                             ${type}
                             <div class="flexCol">
-                                <button class="lightbox__btn lightbox__close"><i class="fas fa-times"></i></button>
-                                <button class="lightbox__btn lightbox__next"><i class="fas fa-chevron-right"></i></button>
+                                <button aria-label="Close dialog" class="lightbox__btn lightbox__close"><i class="fas fa-times" aria-hidden="true"></i></button>
+                                <button aria-label="Next image" class="lightbox__btn lightbox__next"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                             </div>
                             </div>
                         </div>
