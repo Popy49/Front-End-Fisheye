@@ -17,6 +17,7 @@ function photographerFactory(data, type) {
                                 <a href="photographer.html?id=${id}">
                                 <img class="photographer__image"
                                     src="${picture}"
+                                    alt=""
                                 />
                                 <h2>${name}</h2>
                                 </a>
@@ -65,9 +66,10 @@ function photographerFactory(data, type) {
                         </div>`
             } else if(video) {
                 return `<div class="grid__image">
-                        <a class="lightbox__media" href="../../assets/photographers/${firstName}/${video}">
+                        <a class="lightbox__media" href="../../assets/photographers/${firstName}/${video}" >
                         <video controls="controls" preload="metadata">
                             <meta itemprop="name" content="${title}, closeup view">
+                            <p>${title}, closeup view</p>
                             <source src="../../assets/photographers/${firstName}/${video}#t=5" type="video/mp4">
                         </video>
                         </a>
@@ -89,7 +91,7 @@ function photographerFactory(data, type) {
                                         <p>${title}</p>
                                         <div class="grid__infos--flexend">
                                         <p>${likes}</p>
-                                        <button class="likeBtn" onclick="addLike(this)">♥</button>
+                                        <button class="likeBtn" onclick="addLike(this)" aria-label="likes">♥</button>
                                         </div>
                                     </div>
                                 </div>

@@ -5,4 +5,11 @@
   width: 200px;
   background-color: $tertiary-color;
   margin-left: 70vw;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  &--likes {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+  }
 }
