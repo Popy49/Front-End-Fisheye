@@ -131,7 +131,7 @@ class lightbox {
         const dom = document.querySelector('.lightbox')
         console.log(type)
         dom.innerHTML = `<div class=lightbox__background>
-                            <div class="lightbox__diapo" aria-label="image, closeup view" role="dialog" aria-describedby="modal with image closeup view">
+                            <div class="lightbox__diapo" aria-label="image, closeup view" role="dialog">
                             <button aria-label="Previous image" class="lightbox__btn lightbox__previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
                             ${type}
                             <div class="flexCol">
