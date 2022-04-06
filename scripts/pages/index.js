@@ -4,7 +4,7 @@
         /**
         * @return {object} photographers
         */
-        const data = new UserApi('data/photographers.json');
+        const data = new UserApi('./data/photographers.json');
         const datas = await data.get();
         const userdata = datas.photographers;
         const photographers = userdata.map(user => photographerFactory(user, "photographer"))
