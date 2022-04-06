@@ -23,14 +23,17 @@ class lightbox {
         this.url = url
         this.onKeyUp = this.onKeyUp.bind(this)
         document.addEventListener('keyup', this.onKeyUp)
-        
-        const main = document.querySelector('main')
-        main.setAttribute('aria-hidden', true)
-        main.setAttribute('hidden', true)
 
         const dom = document.querySelector('.lightbox')
         dom.style.display = "block"
         dom.setAttribute('aria-hidden', false)
+
+        const modal = document.getElementById('lightboxOpen')
+        modal.focus()
+
+        const main = document.querySelector('main')
+        main.setAttribute('aria-hidden', true)
+        main.setAttribute('hidden', true)
     }
 
     nextLightbox(e){
@@ -110,14 +113,14 @@ class lightbox {
             if(link.getAttribute("href") === url){
                 if(link.getElementsByTagName('img').length){
                     title = link.children[0].alt.split(',')[0];
-                    type = `<figure>
+                    type = `<figure tabindex="0">
                                 <img src=${url}
                                 alt="${title}">
                                 <figcaption>${title}</figcaption>
                             </figure>`
                 } else if (link.getElementsByTagName('video').length){
                     title = link.children[0].children[0].getAttribute("content").split(',')[0]
-                    type = `<figure>
+                    type = `<figure tabindex="0">
                                 <video controls preload="metadata" >
                                 <source src=${url} type="video/mp4">
                                 </video>
@@ -128,7 +131,7 @@ class lightbox {
         })
         const dom = document.querySelector('.lightbox')
         dom.innerHTML = `<div class=lightbox__background>
-                            <div class="lightbox__diapo" aria-label="${title}" role="dialog">
+                            <div id="lightboxOpen" tabindex="0" class="lightbox__diapo" aria-label="image, closeup view">
                             <button aria-label="Previous image" class="lightbox__btn lightbox__previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
                             ${type}
                             <div class="flexCol">

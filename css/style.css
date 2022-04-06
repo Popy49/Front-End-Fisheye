@@ -178,6 +178,10 @@ form .primary_button {
   margin-left: 0;
 }
 
+#modal:focus, #lightboxOpen:focus {
+  border: 1px black solid;
+}
+
 .photograph-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

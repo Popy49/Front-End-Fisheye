@@ -26,6 +26,9 @@ class Modal {
         const dom = document.querySelector('#contact_modal')
         this.display = dom.style.display = "block"
 
+        const modal = document.getElementById('modal')
+        modal.focus()
+
         const main = document.querySelector('main')
         main.setAttribute('aria-hidden', true)
         main.setAttribute('hidden', true)
@@ -81,24 +84,25 @@ class Modal {
         */
         const dom = document.querySelector('#contact_modal');
         dom.innerHTML = `
-                        <div class="modal" aria-labelledby="contact">
+                        <div tabindex="0" id="modal" class="modal" aria-labelledby="contact" role="dialog">
                         <header>
                         <h1 id="contact">Contactez-moi ${this.firstName}</h1>
                         <button class="modal__close"><img class="modal__close" src="assets/icons/close.svg" alt="Close Contact form" /></button>
                         </header>
                         <form>
                         <div>
-                            <label for="First-name">Prénom</label>
-                            <input type="text" id="First-name" name="First-name" required aria-required=true aria-labelledby="First-name" minlength="2" maxlength="30" placeholder="Prénom" >
+                            <label id="First-name" for="First-name">Prénom</label>
+                            <input type="text" name="First-name" required aria-required=true aria-labelledby="First-name" minlength="2" maxlength="30" placeholder="Prénom" >
 
-                            <label for="Last-name">Nom</label>
-                            <input type="text" id="Last-name" name="Last-name" required aria-required=true aria-labelledby="Last-name" minlength="2" maxlength="30" placeholder="Nom">
+                            <label id="Last-name" for="Last-name">Nom</label>
+                            <input type="text" name="Last-name" required aria-required=true aria-labelledby="Last-name" minlength="2" maxlength="30" placeholder="Nom">
 
-                            <label for="Email">Email</label>
-                            <input type="text" id="Email" name="Email" required aria-required=true aria-labelledby="Email" placeholder="exemple@xyz.fr">
+                            <label id="Email" for="Email">Email</label>
+                            <input type="text" name="Email" required aria-required=true aria-labelledby="Email" placeholder="exemple@exemple.com">
 
-                            <label for="Message">Message</label>
-                            <textarea id="Message" name="Message" required aria-required=true placeholder="Laissez votre message ici" aria-labelledby="Message"></textarea>
+                            <label id="Message" for="Message">Message</label>
+                            <textarea name="Message" required aria-required=true placeholder="Laissez votre message ici" aria-labelledby="Message"></textarea>
+
                         </div>
                         <button class="primary_button submit" type="submit">Envoyer</button>
                         </form>

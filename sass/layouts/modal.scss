@@ -68,3 +68,7 @@ form {
     margin-left: 0;
   }
 }
+
+#modal:focus, #lightboxOpen:focus{
+  border: 1px black solid;
+}
