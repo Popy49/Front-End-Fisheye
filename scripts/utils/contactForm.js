@@ -20,7 +20,6 @@ class Modal {
         this.firstName = firstName
         let element = this.buildDOM()
         this.onKeyUp = this.onKeyUp.bind(this)
-
         document.addEventListener('keyup', this.onKeyUp)
 
         const dom = document.querySelector('#contact_modal')

@@ -106,6 +106,7 @@ async function getSort(filter) {
     var box = await lightbox.init()
 }
 
+
 async function getName(photographers) {
     // Récupère le nom du photographe
         /**
