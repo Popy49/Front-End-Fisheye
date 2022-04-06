@@ -60,7 +60,6 @@ function photographerFactory(data, type) {
                             
                             alt="${title}, closeup view"
                             src="../../assets/photographers/${firstName}/${image}"
-                            "
                         /> 
                         </a>
                         </div>`
