@@ -7,7 +7,7 @@ function photographerFactory(data, type) {
     // Récupère les datas des photographes
     if(type == "photographer") {
         const { name, portrait, city, country, tagline, id, price} = data;
-        const picture = `../../assets/photographers/id/${portrait}`;
+        const picture = `./assets/photographers/id/${portrait}`;
         const firstname = name.split(' ')[0];
 
         // Créer le visuel d'un photographe sur la page index
@@ -55,21 +55,21 @@ function photographerFactory(data, type) {
         function getMedia(firstName) {
             if(image){
                 return `<div class="grid__image">
-                        <a class="lightbox__media" href="../../assets/photographers/${firstName}/${image}">
+                        <a class="lightbox__media" href="./assets/photographers/${firstName}/${image}">
                         <img
                             
                             alt="${title}, closeup view"
-                            src="../../assets/photographers/${firstName}/${image}"
+                            src="./assets/photographers/${firstName}/${image}"
                         /> 
                         </a>
                         </div>`
             } else if(video) {
                 return `<div class="grid__image">
-                        <a class="lightbox__media" href="../../assets/photographers/${firstName}/${video}" >
+                        <a class="lightbox__media" href="./assets/photographers/${firstName}/${video}" >
                         <video controls="controls" preload="metadata">
                             <meta itemprop="name" content="${title}, closeup view">
                             <p>${title}, closeup view</p>
-                            <source src="../../assets/photographers/${firstName}/${video}#t=0.5" type="video/mp4">
+                            <source src="./assets/photographers/${firstName}/${video}#t=0.5" type="video/mp4">
                         </video>
                         </a>
                         </div>`
