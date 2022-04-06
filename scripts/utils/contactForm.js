@@ -41,10 +41,10 @@ class Modal {
             * 
         */
         e.preventDefault()
-        const firstname = document.getElementById("First-name").value;
-        const lastName = document.getElementById("Last-name").value;
-        const email = document.getElementById("Email").value;
-        const message = document.getElementById("Message").value;
+        const firstname = document.getElementById("First-name").nextElementSibling.value;
+        const lastName = document.getElementById("Last-name").nextElementSibling.value;
+        const email = document.getElementById("Email").nextElementSibling.value;
+        const message = document.getElementById("Message").nextElementSibling.value;
         console.log(firstname, lastName, email, message)
         this.closeModal(this)
     }

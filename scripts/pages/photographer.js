@@ -214,6 +214,7 @@ async function addLike(e){
     like++
     likes++
     e.parentElement.firstElementChild.innerHTML = like;
+    e.removeAttribute('onclick');
     document.querySelector('.total--likes').firstChild.innerHTML = `${likes} ♥`
 }
 
