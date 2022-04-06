@@ -3,7 +3,7 @@ async function getPhotographers() {
         /**
         * @return {object} photographers
     */
-    const data = new UserApi('../../data/photographers.json');
+    const data = new UserApi('./data/photographers.json');
     const datas = await data.get();
     const userdata = datas.photographers;
     const photographers = userdata.map(user => photographerFactory(user, "photographer"))
@@ -51,7 +51,7 @@ async function getMedias() {
         /**
         * @return {object} medias
     */
-    const data = new UserApi('../../data/photographers.json');
+    const data = new UserApi('./data/photographers.json');
     const datas = await data.get();
     const userdata = datas.media;
     const medias = userdata.map(media => photographerFactory(media, "media"))
