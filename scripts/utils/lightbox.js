@@ -7,7 +7,6 @@ class lightbox {
         links.forEach(link => link.addEventListener("click", e => 
         {
             e.preventDefault()
-            console.log(e)
             new lightbox(e.currentTarget.getAttribute('href'), gallery)
         }))
     }
@@ -110,7 +109,6 @@ class lightbox {
         links.forEach((link) => {
             if(link.getAttribute("href") === url){
                 if(link.getElementsByTagName('img').length){
-                    console.log("img")
                     title = link.children[0].alt.split(',')[0];
                     type = `<figure>
                                 <img src=${url}
@@ -129,9 +127,8 @@ class lightbox {
             }
         })
         const dom = document.querySelector('.lightbox')
-        console.log(type)
         dom.innerHTML = `<div class=lightbox__background>
-                            <div class="lightbox__diapo" aria-label="image, closeup view" role="dialog">
+                            <div class="lightbox__diapo" aria-label="${title}" role="dialog">
                             <button aria-label="Previous image" class="lightbox__btn lightbox__previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
                             ${type}
                             <div class="flexCol">

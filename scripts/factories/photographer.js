@@ -70,7 +70,7 @@ function photographerFactory(data, type) {
                         <video controls="controls" preload="metadata">
                             <meta itemprop="name" content="${title}, closeup view">
                             <p>${title}, closeup view</p>
-                            <source src="../../assets/photographers/${firstName}/${video}#t=5" type="video/mp4">
+                            <source src="../../assets/photographers/${firstName}/${video}#t=0.5" type="video/mp4">
                         </video>
                         </a>
                         </div>`
