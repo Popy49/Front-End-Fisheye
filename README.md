@@ -1,6 +1,6 @@
 # Projet P6 - Parcours Front-end developper
 ![JavaScript](https://img.shields.io/badge/Language-JS-yellow)*
-[Accessibility](https://img.shields.io/badge/Uses-Accessibility-yellow)
+![Accessibility](https://img.shields.io/badge/Uses-Accessibility-yellow)
 
 ## Démarrer le projet
 
