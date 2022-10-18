@@ -7,3 +7,6 @@
 
 Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
 
+## Aperçu
+
+![apercu](./mock6.png)
